@@ -12,7 +12,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.util.*
 
-class AddContactViewModel(val contactsRepository: ContactsRepository) : ViewModel() {
+class AddContactViewModel(private val contactsRepository: ContactsRepository) : ViewModel() {
 
     /**
      * This is the job for all coroutines started by this viewModel.
@@ -74,7 +74,7 @@ class AddContactViewModel(val contactsRepository: ContactsRepository) : ViewMode
     }
 
     @Suppress("UNCHECKED_CAST")
-    class Factory(val repository: ContactsRepository) : ViewModelProvider.Factory {
+    class Factory(private val repository: ContactsRepository) : ViewModelProvider.Factory {
 
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(AddContactViewModel::class.java)) {
